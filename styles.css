@@ -95,6 +95,16 @@ p:has(.icon) {
     border-bottom: 1px solid black;
 }
 
+.projects h3{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.projects a{
+    font-size: 80%;
+}
+
 p{
     margin-bottom: 0.5rem;
 }
