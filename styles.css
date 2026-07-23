@@ -64,8 +64,8 @@ h2 {
 
 main {
     background-color: white;
-    padding-block: 1.16cm;
-    padding-inline: 1.16cm;
+    padding-block: 1cm; /* py */
+    padding-inline: 1.16cm; /* px */
     width: 21cm;
     height: 29.7cm;
     margin: 0 auto;
