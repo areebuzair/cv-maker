@@ -1,0 +1,42 @@
+name: Deploy CV to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+
+      - name: Locate PDF and prepare cv.pdf
+        run: |
+          mkdir public
+          
+          # Find the first PDF file (ignoring hidden files)
+          PDF_FILE=$(find . -maxdepth 2 -type f -name "*.pdf" ! -name ".*" | head -n 1)
+          
+          if [ -z "$PDF_FILE" ]; then
+            echo "Error: No PDF file found in the repository!"
+            exit 1
+          fi
+          
+          echo "Found PDF: $PDF_FILE"
+          cp "$PDF_FILE" public/cv.pdf
+
+          cd public
+          touch .nojekyll
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          keep_files: false
+          force_orphan: true
