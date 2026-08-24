@@ -110,6 +110,7 @@ p{
 }
 
 td {
+    padding-left: 0;
     padding-right: 0.2cm;
     text-align: left;
 }
@@ -122,4 +123,8 @@ a {
     color: #002e7c;
     cursor: pointer;
     text-decoration: none;
+}
+
+.references>div{
+    display: flex;
 }
